@@ -1,5 +1,27 @@
 @import './variables.scss';
 
+html,body{
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
 body {
   font-family: "Helvetica Neue", Helvetica, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "微软雅黑", Arial, sans-serif;
+}
+
+.ft-20{
+  font-size: 18px;
+}
+
+.ft-18{
+  font-size: 18px;
+}
+
+.ft-16{
+  font-size: 16px;
+}
+
+.ft-14{
+  font-size: 14px;
 }
