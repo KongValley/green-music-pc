@@ -1,7 +1,6 @@
 <template>
-  <div class="bg">
-    <title-bar></title-bar>
-    <div class="bg-blur"></div>
+  <div class="wrapper">
+    <title-bar title-color="green"></title-bar>
   </div>
 </template>
 
@@ -21,18 +20,10 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+@import'@/styles/variables.scss';
 .bg{
   width: 100%;
   height: 100%;
-}
-.bg-blur{
-  position: absolute;
-  width:500%;
-  height:100%;
-  margin-left:-150%;
-  top:-10px;
-  background: url('../../assets/back.png') no-repeat center center fixed;
-  filter: blur(400px);
-  z-index: -1;
+  background-color: $white;
 }
 </style>
