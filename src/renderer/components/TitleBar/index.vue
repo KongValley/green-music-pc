@@ -8,21 +8,24 @@
                 Music
             </el-col>
             <el-col :span="8" class="title-btn ft-20">
-                <svg-icon icon-class="min" class-name="btn-cell" @click="sendMessage('window-min')"></svg-icon>
-                <svg-icon icon-class="max" class-name="btn-cell" @click="sendMessage('window-max')"></svg-icon>
-                <svg-icon icon-class="close" class-name="btn-cell" @click="sendMessage('window-close')"></svg-icon>
+              <!-- 由于svg的点击时间需要鼠标点击到svg的线条上面 -->
+              <!-- 所以会造成click事件不敏感 -->
+              <!-- 可以在svg加层div，把click事件绑定在div上 -->
+              <div v-for="button in buttons" :key="button" @click="sendMessage(button)" class="buttons">
+                <svg-icon :icon-class="button" class-name="btn-cell"></svg-icon>
+              </div>
             </el-col>
         </el-row>
     </div>
 </template>
 
 <script>
-const {ipcRenderer: ipc} = require('electron')
-
 export default {
   name: '',
   data () {
-    return {}
+    return {
+      buttons: ['min', 'max', 'close']
+    }
   },
   props: {
     titleColor: {
@@ -38,8 +41,9 @@ export default {
     }
   },
   methods: {
-    sendMessage: function (type) {
-      ipc.send('window-close')
+    sendMessage (type) {
+      console.log(type)
+      this.$electron.ipcRenderer.send(type)
     }
   }
 }
@@ -47,6 +51,7 @@ export default {
 
 <style lang="scss" scoped>
 @import "@/styles/variables.scss";
+
 .title-contain {
   width: 100%;
   height: 30px;
@@ -57,22 +62,25 @@ export default {
 }
 .title-btn {
   text-align: right;
-  padding-right: 20px;
-}
+} 
 
 .title-empty {
   min-height: 20px;
 }
 
+.buttons{
+  display: inline-block;
+}
+
 .btn-cell {
-  margin-right: 5px;
+  padding-right: 5px;
+  padding-left: 5px;
+  min-width: 20px;
+  min-height: 30px;
   -webkit-app-region: no-drag;
-  &:last-child {
-    margin-right: 0px;
-  }
   &:hover {
-      color: $light-red;
-    opacity: 0.5;
+    background-color: transparent;
+    background-color: rgba(0, 0, 0, 0.25); 
   }
 }
 </style>

@@ -1,6 +1,6 @@
 'use strict'
 
-import { app, BrowserWindow, ipcMain } from 'electron'
+import { app, BrowserWindow } from 'electron'
 
 /**
  * Set `__static` path to static files in production
@@ -31,17 +31,11 @@ function createWindow () {
   mainWindow.on('closed', () => {
     mainWindow = null
   })
-}
 
-ipcMain.on('window-min', e => mainWindow.minimize())
-ipcMain.on('window-max', e => {
-  if (mainWindow.isMaximized()) {
-    mainWindow.unmaximize()
-  } else {
-    mainWindow.maximize()
-  }
-})
-ipcMain.on('window-close', e => mainWindow.close())
+  mainWindow.setMenu(null)
+
+  require('./ipcMain/index.js')
+}
 
 app.on('ready', createWindow)
 

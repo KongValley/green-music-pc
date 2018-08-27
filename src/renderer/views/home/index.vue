@@ -1,6 +1,6 @@
 <template>
   <div class="wrapper">
-    <title-bar title-color="green"></title-bar>
+    <title-bar :title-color="themeColor"></title-bar>
   </div>
 </template>
 
@@ -10,20 +10,24 @@ export default {
   name: 'home',
   data () {
     return {
-
     }
   },
   components: {
     TitleBar
+  },
+  computed: {
+    themeColor () {
+      return this.$store.getters.themeColor
+    }
+  },
+  mounted () {
+  },
+  methods: {
   }
 }
 </script>
 
 <style lang="scss" scoped>
 @import'@/styles/variables.scss';
-.bg{
-  width: 100%;
-  height: 100%;
-  background-color: $white;
-}
+
 </style>

@@ -1,11 +1,15 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
-
-import modules from './modules'
+import view from './modules/view'
+import getters from './getters'
 
 Vue.use(Vuex)
 
-export default new Vuex.Store({
-  modules,
+const store = new Vuex.Store({
+  modules: {
+    view
+  },
+  getters,
   strict: process.env.NODE_ENV !== 'production'
 })
+export default store
