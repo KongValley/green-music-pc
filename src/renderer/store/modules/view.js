@@ -2,7 +2,7 @@ import Cookies from 'js-cookie'
 
 const view = {
   state: {
-    themeColor: Cookies.get('themeColor') || 'green'
+    themeColor: Cookies.get('themeColor') || 'red'
   },
   mutations: {
     SET_COLOR: (state, themeColor) => {
